@@ -1,0 +1,4 @@
+﻿  chapter10_card.c
+D:\user_wujihang\C_learn\Project1\Project1\chapter10_card.c(42,20): warning C4101: “suit_ch”: 未引用的局部变量
+D:\user_wujihang\C_learn\Project1\Project1\chapter10_card.c(42,7): warning C4101: “ch”: 未引用的局部变量
+  Project1.vcxproj -> D:\user_wujihang\C_learn\Project1\x64\Debug\Project1.exe
