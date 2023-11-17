@@ -113,8 +113,41 @@ analyze_hand:...
 */
 void analyze_hand(void)
 {
-	
+	int num_consec = 0;
+	int rank, suit;
 
+	straight = false;
+	flush = false;
+	four = false;
+	three = false;
+	pairs = 0;
+
+	/*check for flush*/
+	for (suit = 0; suit < NUM_SUITS; suit++)
+	{
+		if (num_in_suit[suit] == NUM_CARDS)
+		{
+			flush = true;
+		}
+	}
+	/*check for straight*/
+	rank = 0;
+	while (num_in_rank[rank] == 0) rank++;
+	for (; rank < NUM_RANKS && num_in_rank[rank] > 0; rank++)
+	{num_consec++;}
+	if (num_consec == NUM_CARDS)
+	{
+		straight = true;
+		return;
+	}
+	/*check for 4of a kind 3of a kind and pairs*/
+	rank = 0;
+	for (; rank < NUM_RANKS; rank++)
+	{
+		if (num_in_rank[rank] == 2) { pairs++; }
+		if (num_in_rank[rank] == 3) { three = true; }
+		if (num_in_rank[rank] == 4) { four = true; }
+	}
 }
 
 /*
@@ -122,6 +155,15 @@ print_result:...
 */
 void print_result(void)
 {
-	
+	if (straight && flush) printf("straight flush");
+	else if (four)	printf("four a kind");
+	else if (three && pairs == 1)	printf("full house");
+	else if (flush)		printf("flush");
+	else if (straight) printf("straight");
+	else if (three)	printf("three of a kind");
+	else if (pairs == 2) printf("two pairs");
+	else if (pairs == 1) printf("pair");
+	else	printf("high card");
+	printf("\n\n");
 
 }
